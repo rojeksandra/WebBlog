@@ -16,6 +16,9 @@ Strona internetowa nosi tytuł "Paws and Claws Blog" i jest blogiem poświęcony
 2. **BREED**: W tej sekcji znajdują się różne rasy kotów. Po kliknięciu na zdjęcie rasy użytkownik przenoszony jest do dłuższego artykułu dotyczącego danej rasy.
 3. **TAKE A PHOTO**: Ostatnia sekcja umożliwia użytkownikowi zrobienie sobie zdjęcia z wygenerowanym napisem oraz pobranie zrobionego zdjęcia. W przyszłości planowane jest dodanie możliwości nagrywania dźwięku na stronie.
 
+##Język:
+Strona w całości jest napisana w języku angielskim. 
+
 Projekt jest ciągle rozwijany, aby zapewnić nowe funkcjonalności i lepsze doświadczenia użytkownikom odwiedzającym stronę.
 
 ## Prezentacja Strony Web:
