@@ -18,4 +18,9 @@ Strona internetowa nosi tytuł "Paws and Claws Blog" i jest blogiem poświęcony
 
 Projekt jest ciągle rozwijany, aby zapewnić nowe funkcjonalności i lepsze doświadczenia użytkownikom odwiedzającym stronę.
 
-## Prezentacja:
+## Prezentacja Strony Web:
+1. ![Zdjęcie 1](home_page.png)
+2. ![Zdjęcie 2](ścieżka/do/zdjęcia2.jpg)
+3. ![Zdjęcie 3](ścieżka/do/zdjęcia3.jpg)
+4. ![Zdjęcie 4](ścieżka/do/zdjęcia4.jpg)
+5. ![Zdjęcie 5](ścieżka/do/zdjęcia5.jpg)
