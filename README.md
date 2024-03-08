@@ -21,8 +21,8 @@ Strona w całości jest napisana w języku angielskim.
 Projekt jest ciągle rozwijany, aby zapewnić nowe funkcjonalności i lepsze doświadczenia użytkownikom odwiedzającym stronę.
 
 ## Prezentacja Strony Web:
-![Zdjęcie 1](home_page.png)
-![Zdjęcie 2](health.png)
-![Zdjęcie 3](breed.png)
-![Zdjęcie 4](takephoto.png)
-![Zdjęcie 5](takephoto2.png)
+<img src="image/home_page.png" alt="Zdjęcie 1">
+<img src="image/health.png" alt="Zdjęcie 2">
+<img src="image/breed.png" alt="Zdjęcie 3">
+<img src="image/takephoto.png" alt="Zdjęcie 4">
+<img src="image/takephoto2.png" alt="Zdjęcie 5">
