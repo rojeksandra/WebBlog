@@ -25,4 +25,4 @@ Projekt jest ciągle rozwijany, aby zapewnić nowe funkcjonalności i lepsze do�
 <img src="image/health.png" alt="Zdjęcie 2">
 <img src="image/breed.png" alt="Zdjęcie 3">
 <img src="image/takephoto.png" alt="Zdjęcie 4">
-<img src="image/takephoto2.png" alt="Zdjęcie 5">
+<img src="takephoto2.png" alt="Zdjęcie 5">
