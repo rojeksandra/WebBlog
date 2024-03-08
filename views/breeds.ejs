@@ -1,0 +1,85 @@
+<%- include("partials/header"); -%>
+<style>
+    body {
+        font-family: 'Times New Roman', Times, serif, sans-serif;
+        text-align: center;
+        padding: 20px;
+    }
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+    .image-container img {
+        width: 25%;
+        margin-right: 10px;
+        transition: border-color 0.3s ease; 
+    }
+    .image-container img:hover {
+        border: 2px solid #ffcdac; 
+    }
+    
+    .image-container img:nth-child(2) {
+        width: 35%;
+    }
+</style>
+
+<h1>TOP 5 BREEDS</h1>
+<br>
+<h2 style="text-align: left;">DOMESTIC CAT</h2>
+<p style="text-align: justify; font-size: 1.3em;">
+    House cats - masters of relaxation and exploration.
+    They find the comfiest spots to nap and always surprise us with their playful antics.
+</p>
+
+<div class="image-container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/1280px-Cat_August_2010-4.jpg" alt="Image 2" onclick="redirectToAnotherPage('https://www.nationalgeographic.com/animals/mammals/facts/domestic-cat')">
+</div>
+
+<h2 style="text-align: left;">PERSIAN</h2>
+<p style="text-align: justify; font-size: 1.3em;">
+    Persian cats - luxurious furballs with a regal demeanor. 
+    They look like they just stepped out of a fancy salon, and they know it!
+</p>
+
+<div class="image-container">
+    <img src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg" alt="Image 2" onclick="redirectToAnotherPage('https://en.wikipedia.org/wiki/Persian_cat')">
+</div>
+
+<h2 style="text-align: left;">MAINE COON</h2>
+<p style="text-align: justify; font-size: 1.3em;">
+    Maine Coons - gentle giants with hearts of gold. 
+    They're big enough to take up the whole couch but gentle enough to be everyone's favorite cuddle buddy.
+</p>
+
+<div class="image-container">
+    <img src="https://media-eu.husse.com/media/1b/df/c1/1607081048/iStock-1031592516.jpg" alt="Image 2" onclick="redirectToAnotherPage('https://en.wikipedia.org/wiki/Maine_Coon')">
+</div>
+
+<h2 style="text-align: left;">SIAMESE</h2>
+<p style="text-align: justify; font-size: 1.3em;">
+    Siamese cats - talkative and expressive, with striking blue eyes.
+    They always have something to say and aren't afraid to say it, even if it's just demanding dinner!
+</p>
+
+<div class="image-container">
+    <img src="https://www.dailypaws.com/thmb/tPXFfGDaeXPytWTKsYQgU1E3LeU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/siamese-cat-couch_525025708-2000-e914b62ff65f4df39a7f55b87bf49213.jpg" alt="Image 2" onclick="redirectToAnotherPage('https://en.wikipedia.org/wiki/Siamese_cat')">
+</div>
+
+<h2 style="text-align: left;">BRITISH SHORTHAIR</h2>
+<p style="text-align: justify; font-size: 1.3em;">
+    British Shorthairs - elegant and refined, like aristocrats from an English garden.
+    They may seem aloof, but they're always up for a game of chase with a feather toy.
+</p>
+
+<div class="image-container">
+    <img src="https://www.omlet.com.pl/images/cache/1024/682/British-shorthair-self-cat-lying-on-floor.jpg" alt="Image 2" onclick="redirectToAnotherPage('https://en.wikipedia.org/wiki/British_Shorthair')">
+</div>
+
+<%- include("partials/footer"); -%>
+
+<script>
+    function redirectToAnotherPage(link) {
+        window.open(link, '_blank'); 
+    }
+</script>

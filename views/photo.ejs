@@ -1,0 +1,273 @@
+<%- include("partials/header"); -%>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+    }
+
+    img {
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+
+    #cameraFeed {
+        display: block;
+        margin: 0 auto;
+    }
+
+    #myModal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.9);
+        padding-top: 20px;
+    }
+
+    #modalContent {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .modalImg {
+        margin: 10px;
+        border: 1px solid #ddd;
+        max-height: 150px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .modalImg:hover {
+        border: 1px solid #777;
+    }
+
+    .modalImgModal {
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+        display: block;
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        color: #fff;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+</style>
+
+<h1>Snap a Photo with Your Pet!</h1>
+<p id="changeContent"> </p>
+
+<video id="cameraFeed" autoplay></video>
+<img id="capturedPhoto">
+
+<button id="captureButton">Take a photo</button>
+<button id="resetButton" style="display: none;">Take a new photo</button>
+<button id="downloadButton" style="display: none;">Download</button>
+<button id="myPhotosButton">My photos</button>
+
+<div id="recordingsList">
+    <ul id="recordings"></ul>
+</div>
+
+<div id="myModal">
+    <div id="modalContent"></div>
+    <span class="close" onclick="closeModal()">&times;</span>
+</div>
+
+<script>
+    const recordingsList = document.getElementById('recordings');
+    const cameraFeed = document.getElementById('cameraFeed');
+    const capturedPhoto = document.getElementById('capturedPhoto');
+    const captureButton = document.getElementById('captureButton');
+    const resetButton = document.getElementById('resetButton');
+    const downloadButton = document.getElementById('downloadButton');
+    const myPhotosButton = document.getElementById('myPhotosButton');
+    const modal = document.getElementById('myModal');
+    const modalContent = document.getElementById('modalContent');
+    const changeContent = document.getElementById('changeContent');
+
+    let stream;
+    let myPhotos = [];
+
+    
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then((mediaStream) => {
+            stream = mediaStream;
+            cameraFeed.srcObject = mediaStream;
+        })
+        .catch((error) => {
+            console.error('Error while accessing the camera:', error);
+        });
+
+   
+    function capturePhoto() {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        canvas.width = cameraFeed.videoWidth;
+        canvas.height = cameraFeed.videoHeight;
+
+        context.drawImage(cameraFeed, 0, 0, canvas.width, canvas.height);
+
+        context.font = '30px Times New Roman';
+        context.fillStyle = 'white';
+        context.textAlign = 'center';
+        context.fillText('ME&MYCAT', canvas.width / 2, 50);
+
+        const photoURL = canvas.toDataURL('image/png');
+
+        myPhotos.push({ url: photoURL });
+
+        displayPhoto(photoURL);
+        resetButton.style.display = 'inline';
+        downloadButton.style.display = 'inline';
+        captureButton.style.display = 'none';
+}
+
+    function resetCapture() {
+        capturedPhoto.style.display = 'none';
+        cameraFeed.style.display = 'block';
+        changeContent.textContent = '';
+        resetButton.style.display = 'none';
+        downloadButton.style.display = 'none';
+        captureButton.style.display = 'inline';
+    }
+
+   
+    function displayPhoto(url) {
+    
+        cameraFeed.style.display = 'none';
+        capturedPhoto.src = url;
+        capturedPhoto.style.display = 'block';
+
+        changeContent.textContent = 'Photo taken!';
+    }
+
+  
+    function downloadPhoto() {
+        const fileName = window.prompt('Enter the file name (without extension):', 'image');
+        if (fileName !== null) {
+            const anchor = document.createElement('a');
+            anchor.href = capturedPhoto.src;
+            anchor.download = `${fileName}.png`;
+            anchor.click();
+        }
+    }
+
+  
+    function displayMyPhotos() {
+        
+        modalContent.innerHTML = '';
+
+      
+        myPhotos.forEach((photo, index) => {
+            const imgThumbnail = document.createElement('img');
+            imgThumbnail.src = photo.url;
+            imgThumbnail.alt = `Thumbnail ${index + 1}`;
+            imgThumbnail.classList.add('modalImg');
+            imgThumbnail.onclick = () => openModal(photo.url);
+
+            
+            const downloadButton = document.createElement('button');
+            downloadButton.textContent = 'Download';
+            downloadButton.onclick = (event) => downloadPhotoFromThumbnail(event, photo.url);
+
+            const container = document.createElement('div');
+            container.appendChild(imgThumbnail);
+            container.appendChild(downloadButton);
+
+            modalContent.appendChild(container);
+        });
+
+        
+        modal.style.display = 'block';
+    }
+
+    
+    function openModal(photoUrl) {
+        
+        const modalImg = document.createElement('img');
+        modalImg.src = photoUrl;
+        modalImg.alt = 'Selected Photo';
+        modalImg.classList.add('modalImgModal');
+
+        
+        const closeModalButton = document.createElement('span');
+        closeModalButton.innerHTML = '&times;';
+        closeModalButton.classList.add('close');
+        closeModalButton.onclick = closeModal;
+
+        modalContent.innerHTML = '';
+        modalContent.appendChild(modalImg);
+
+       
+        const downloadButton = document.createElement('button');
+        downloadButton.textContent = 'Pobierz';
+        downloadButton.onclick = (event) => downloadPhotoFromModal(event, photoUrl);
+        modalContent.appendChild(downloadButton);
+
+        modalContent.appendChild(closeModalButton);
+
+        
+        modal.style.display = 'block';
+    }
+
+    
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+  
+    function downloadPhotoFromThumbnail(event, photoUrl) {
+        event.stopPropagation();
+    
+        const fileName = window.prompt('Enter the file name (without extension):', 'image');
+        if (fileName !== null) {
+            const anchor = document.createElement('a');
+            anchor.href = photoUrl;
+            anchor.download = `${fileName}.png`;
+            anchor.click();
+        }
+    }
+    
+    function downloadPhotoFromModal(event, photoUrl) {
+        event.stopPropagation();
+    
+        const fileName = window.prompt('Enter the file name (without extension):', 'image');
+        if (fileName !== null) {
+            const anchor = document.createElement('a');
+            anchor.href = photoUrl;
+            anchor.download = `${fileName}.png`;
+            anchor.click();
+        }
+    }
+
+    
+    captureButton.addEventListener('click', capturePhoto);
+
+  
+    resetButton.addEventListener('click', resetCapture);
+
+   
+    downloadButton.addEventListener('click', downloadPhoto);
+
+   
+    myPhotosButton.addEventListener('click', displayMyPhotos);
+</script>
+
+<%- include("partials/footer"); -%>
