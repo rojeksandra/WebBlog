@@ -1,5 +1,5 @@
 # WebBlog
-Projekt – Strona Webowa z wykorzystaniem HTML, CSS, JavaScript
+#Projekt – Strona Webowa z wykorzystaniem HTML, CSS, JavaScript
 Cel:
 Celem projektu było stworzenie strony internetowej obsługującej modyfikacje multimediów, skoncentrowanej głównie na tematyce dotyczącej kotów.
 
